@@ -31,10 +31,6 @@ export default function StickyAssessmentCTA({ contactUrl }: Props) {
         href={contactUrl}
         className="inline-flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-slate-900 text-white hover:bg-emerald-600 transition-all duration-300 shadow-xl border border-slate-700/50 hover:border-emerald-400 group backdrop-blur-md"
       >
-        <span className="relative flex h-3 w-3">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-        </span>
         <span className="font-sans font-bold text-sm tracking-tight">
           Schedule Assessment
         </span>
