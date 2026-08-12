@@ -1,0 +1,72 @@
+---
+// TelemetryDashboard.astro
+---
+
+<div class="relative w-full max-w-2xl mx-auto bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl shadow-black/50 font-sans text-xs">
+  
+  <!-- Dashboard Header -->
+  <div class="flex items-center justify-between px-4 py-3 border-b border-zinc-800 bg-zinc-900/50">
+    <div class="flex items-center gap-3">
+      <span class="text-zinc-400 font-sans font-medium uppercase tracking-widest text-[10px]">Division 02 — US-East-1 Cluster</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      <span class="text-emerald-400 font-sans font-semibold text-[10px]">ALL SYSTEMS NOMINAL</span>
+    </div>
+  </div>
+
+  <!-- Main Grid Layout -->
+  <div class="grid grid-cols-2 gap-4 p-5 border-b border-zinc-800">
+    
+    <!-- Left Column: Node Status Grid -->
+    <div>
+      <span class="text-zinc-400 font-sans font-medium block mb-2.5 text-[10px] uppercase tracking-wider">Active Cluster Nodes</span>
+      <div class="grid grid-cols-6 gap-1.5">
+        {Array.from({ length: 24 }).map((_, i) => (
+          <div class={`w-full aspect-square rounded-sm ${i % 7 === 0 ? 'bg-emerald-500/80 animate-pulse' : 'bg-emerald-500/20'} border border-emerald-500/30`}></div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Right Column: Network Traffic -->
+    <div class="flex flex-col justify-end h-full">
+      <div class="flex justify-between items-end mb-2">
+        <span class="text-zinc-400 font-sans font-medium text-[10px] uppercase tracking-wider">Ingress Traffic</span>
+        <span class="text-cyan-400 font-mono font-bold text-[11px]">14.2 TB/s</span>
+      </div>
+      <div class="flex items-end gap-1.5 h-16 pt-2 border-t border-zinc-800/50">
+        <div class="w-full bg-cyan-500/40 h-[40%] hover:h-[60%] transition-all rounded-t-sm"></div>
+        <div class="w-full bg-cyan-500/60 h-[80%] hover:h-[90%] transition-all rounded-t-sm"></div>
+        <div class="w-full bg-cyan-500/30 h-[30%] hover:h-[50%] transition-all rounded-t-sm"></div>
+        <div class="w-full bg-cyan-500/80 h-[100%] hover:h-[80%] transition-all animate-pulse rounded-t-sm"></div>
+        <div class="w-full bg-cyan-500/50 h-[60%] hover:h-[70%] transition-all rounded-t-sm"></div>
+        <div class="w-full bg-cyan-500/40 h-[45%] hover:h-[55%] transition-all rounded-t-sm"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terminal Log Window -->
+  <div class="p-4 bg-[#050505] h-36 overflow-hidden relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#050505] z-10 pointer-events-none"></div>
+    <div class="animate-terminal-scroll font-mono text-[10px] text-zinc-400 space-y-1.5 flex flex-col justify-end h-full">
+      <div class="flex gap-2"><span class="text-zinc-600">[12:44:01]</span><span class="text-cyan-400 font-bold">INFO</span><span>Applying Terraform state sync to production...</span></div>
+      <div class="flex gap-2"><span class="text-zinc-600">[12:44:02]</span><span class="text-cyan-400 font-bold">INFO</span><span>Scaling Proxmox VE worker nodes...</span></div>
+      <div class="flex gap-2"><span class="text-zinc-600">[12:44:03]</span><span class="text-emerald-400 font-bold">SUCCESS</span><span>Worker nodes synchronized.</span></div>
+      <div class="flex gap-2"><span class="text-zinc-600">[12:44:05]</span><span class="text-cyan-400 font-bold">INFO</span><span>Initiating automated LDAP authorization cluster failover test...</span></div>
+      <div class="flex gap-2"><span class="text-zinc-600">[12:44:07]</span><span class="text-emerald-400 font-bold">SUCCESS</span><span>Identity migration validated. Active directory stable.</span></div>
+      <div class="flex gap-2"><span class="text-zinc-600">[12:44:08]</span><span class="text-cyan-400 font-bold">INFO</span><span>Awaiting next deployment trigger...</span></div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  @keyframes terminal-scroll {
+    0% { transform: translateY(10px); opacity: 0; }
+    10% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-20px); opacity: 1; }
+  }
+  .animate-terminal-scroll {
+    animation: terminal-scroll 6s infinite alternate ease-in-out;
+  }
+</style>

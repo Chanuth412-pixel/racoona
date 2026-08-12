@@ -1,0 +1,58 @@
+---
+// AmbientCinemagraph.astro
+---
+
+<div class="w-full max-w-7xl mx-auto my-12 px-4 sm:px-6 lg:px-8">
+  <div class="relative w-full aspect-[16/9] md:aspect-[21/9] bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-lg group">
+    
+    <!-- Soft Overlay for Contrast if needed -->
+    <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-white/40 z-10 pointer-events-none"></div>
+
+    <!-- Background Video Loop with Image Fallback -->
+    <video 
+      autoplay 
+      loop 
+      muted 
+      playsinline 
+      poster="/food-hero.jpg"
+      class="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity duration-700 filter brightness-95 contrast-105"
+    >
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-chef-plating-a-gourmet-dish-in-a-restaurant-41484-large.mp4" type="video/mp4" />
+      <img src="/food-hero.jpg" alt="Hearth & Barrel Asset" class="w-full h-full object-cover" />
+    </video>
+
+    <!-- Top Left Metadata Overlay -->
+    <div class="absolute top-6 left-6 z-20 bg-white/90 backdrop-blur-md border border-slate-200 px-4 py-3 rounded-xl font-mono text-xs shadow-md">
+      <div class="flex items-center gap-2 mb-1.5">
+        <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+        <span class="text-amber-700 font-bold text-[10px] tracking-wider uppercase">ASSET_STREAM // LIVE</span>
+      </div>
+      <div class="text-slate-500 text-[11px]">LOCATION: <span class="text-slate-900 font-semibold">AUSTIN_TX</span></div>
+      <div class="text-slate-500 text-[11px]">ASSET: <span class="text-slate-900 font-bold">HEARTH & BARREL</span></div>
+      <div class="text-slate-500 text-[11px]">SERVICE_STATUS: <span class="text-emerald-600 font-bold">ACTIVE</span></div>
+    </div>
+
+    <!-- Top Right Capacity & Throughput Badge -->
+    <div class="absolute top-6 right-6 z-20 hidden sm:flex items-center gap-4 bg-white/90 backdrop-blur-md border border-slate-200 px-4 py-3 rounded-xl font-mono text-xs shadow-md">
+      <div>
+        <div class="text-[9px] text-slate-500 uppercase tracking-widest">FLOOR_CAPACITY</div>
+        <div class="text-slate-900 font-bold text-sm">94.2%</div>
+      </div>
+      <div class="h-6 w-px bg-slate-200"></div>
+      <div>
+        <div class="text-[9px] text-slate-500 uppercase tracking-widest">HOURLY_COVERS</div>
+        <div class="text-amber-700 font-bold text-sm">184 / HR</div>
+      </div>
+    </div>
+
+    <!-- Bottom Left Title Overlay -->
+    <div class="absolute bottom-6 left-6 z-20 font-sans max-w-md">
+      <span class="text-xs font-mono text-amber-700 uppercase tracking-widest mb-1 block font-semibold">PHYSICAL ASSET MANAGEMENT</span>
+      <h3 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Hearth & Barrel Operations</h3>
+      <p class="text-xs text-slate-600 mt-1 font-sans leading-relaxed">
+        Integrating cloud-based POS telemetry and kitchen dispatch routing into high-volume culinary assets.
+      </p>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,338 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CloudRouter from '../components/CloudRouter.tsx';
+import FaqAccordion from '../components/FaqAccordion.tsx';
+import StickyAssessmentCTA from '../components/StickyAssessmentCTA.tsx';
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+
+const trustBadges = [
+	'AWS',
+	'Azure',
+	'GCP',
+	'Kubernetes',
+	'Terraform',
+	'FedRAMP',
+	'NIST'
+];
+
+const coreCapabilities = [
+	{
+		title: 'Cloud Migration',
+		category: 'Cloud Engineering',
+		icon: 'M3 15a4 4 0 004 4h9a5 5 0 001.09-9.88A5.5 5.5 0 008.5 6 5.5 5.5 0 003 11.5A4 4 0 003 15z',
+		tasks: [
+			'Execute zero-downtime refactoring and legacy application migration',
+			'Transition workloads to AWS, Azure, and Google Cloud Platform',
+			'Establish containerization and cloud-native runtime environments'
+		],
+		outcome: 'Reduce infrastructure overhead, improve scalability, and accelerate modernization.'
+	},
+	{
+		title: 'Artificial Intelligence',
+		category: 'AI Infrastructure',
+		icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+		tasks: [
+			'Deploy high-throughput GPU inference clusters & micro-services',
+			'Implement automated model routing & payload optimization',
+			'Integrate vector databases with real-time enterprise datastores'
+		],
+		outcome: 'Accelerate AI deployment velocity, lower inference costs, and drive data-driven decision making.'
+	},
+	{
+		title: 'Infrastructure Architecture',
+		category: 'Architecture Operations',
+		icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10',
+		tasks: [
+			'Architect resilient hybrid-cloud & Kubernetes topologies',
+			'Provision Infrastructure as Code (IaC) via Terraform & Pulumi',
+			'Configure multi-region failover & automated disaster recovery'
+		],
+		outcome: 'Eliminate single points of failure, ensure automated scaling, and guarantee enterprise reliability.'
+	},
+	{
+		title: 'Gov Cloud Migration',
+		category: 'Compliance & Security',
+		icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+		tasks: [
+			'Provision FedRAMP, NIST, and HIPAA compliant cloud environments',
+			'Implement identity federation and strict RBAC policy controls',
+			'Automate continuous vulnerability auditing and compliance logging'
+		],
+		outcome: 'Accelerate compliance approvals, meet strict federal security standards, and protect regulated workloads.'
+	},
+	{
+		title: 'MLOps',
+		category: 'Machine Learning Operations',
+		icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15',
+		tasks: [
+			'Automate ML model training, evaluation, and CI/CD deployment loops',
+			'Establish model registries, telemetry tracking, and drift monitoring',
+			'Optimize production inference pipelines and feature store management'
+		],
+		outcome: 'Shorten time-to-market for AI models, eliminate model drift, and maintain continuous operational accuracy.'
+	},
+	{
+		title: 'Data Migration',
+		category: 'Data Engineering',
+		icon: 'M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4',
+		tasks: [
+			'Engineer petabyte-scale ETL/ELT streaming data pipelines',
+			'Perform dynamic database schema transformation & data cleanup',
+			'Ensure zero data loss and strict schema integrity verification'
+		],
+		outcome: 'Unlock real-time enterprise data utility, eliminate data silos, and preserve strict schema integrity.'
+	}
+];
+
+const whyRacoonaPillars = [
+	{
+		title: 'Engineering-first',
+		desc: 'Senior engineers instead of generic IT support.',
+		icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4',
+		colSpan: 'col-span-1 md:col-span-2 lg:col-span-2',
+		bgAccent: 'bg-emerald-500/5'
+	},
+	{
+		title: 'Security by design',
+		desc: 'Security and compliance integrated into architecture from day one.',
+		icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+		colSpan: 'col-span-1 md:col-span-1 lg:col-span-1',
+		bgAccent: 'bg-teal-500/5'
+	},
+	{
+		title: 'Cloud + AI expertise',
+		desc: 'Infrastructure designed for modern AI workloads.',
+		icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+		colSpan: 'col-span-1 md:col-span-1 lg:col-span-1',
+		bgAccent: 'bg-emerald-500/5'
+	},
+	{
+		title: '24/7 observability',
+		desc: 'Continuous monitoring instead of reactive support.',
+		icon: 'M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z',
+		colSpan: 'col-span-1 md:col-span-1 lg:col-span-1',
+		bgAccent: 'bg-cyan-500/5'
+	},
+	{
+		title: 'Enterprise-ready',
+		desc: 'Built for complex, regulated, and high-availability environments.',
+		icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4',
+		colSpan: 'col-span-1 md:col-span-1 lg:col-span-1',
+		bgAccent: 'bg-emerald-500/5'
+	}
+];
+
+const quantifiedResults = [
+	{ value: '42%', label: 'reduction in cloud costs' },
+	{ value: '99.99%', label: 'production availability' },
+	{ value: '3x', label: 'faster deployment cycles' },
+	{ value: '0', label: 'critical incidents during migration' }
+];
+---
+
+<BaseLayout title="Enterprise IT Infrastructure & Cloud Migration - Racoona AI" description="Racoona helps enterprises secure, migrate, and operate complex cloud and AI infrastructure—with 24/7 telemetry and engineering support.">
+	
+	<!-- HERO SECTION (Pure White / Light Mode Base) -->
+	<div class="relative overflow-hidden bg-slate-50 pt-28 pb-20 border-b border-slate-200">
+	  
+	  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+	    
+	    <!-- Left Column: Typography & Action -->
+	    <div class="text-left relative z-10">
+	      
+	      <p class="animate-title-1 text-emerald-600 font-sans text-xs tracking-widest uppercase mb-4 font-semibold">
+	        Division 02 — Enterprise IT Infrastructure
+	      </p>
+
+	      <h1 class="animate-title-2 text-5xl md:text-6xl font-bold tracking-tight text-slate-900 mb-6 font-sans leading-tight">
+	        Modernize your infrastructure <br />
+	        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-700">
+	          without disrupting operations.
+	        </span>
+	      </h1>
+
+	      <p class="animate-title-3 text-slate-600 text-lg font-sans leading-relaxed mb-10 max-w-lg">
+	        Racoona helps enterprises secure, migrate, and operate complex cloud and AI infrastructure—with 24/7 telemetry and engineering support.
+	      </p>
+
+	      <div class="animate-title-3 flex flex-col sm:flex-row gap-4">
+	        <a href={`${base}/contact?interest=it-services`} class="inline-flex justify-center items-center px-6 py-3.5 rounded-xl bg-emerald-600 text-white font-sans font-bold hover:bg-emerald-700 transition-colors shadow-md">
+	          Schedule an Infrastructure Assessment
+	        </a>
+	        <a href="#capabilities" class="inline-flex justify-center items-center px-6 py-3.5 rounded-xl border border-slate-300 bg-white text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors font-medium font-sans shadow-sm">
+	          Explore Services
+	        </a>
+	      </div>
+	    </div>
+
+	    <!-- Right Column: Multi-Cloud Router Component -->
+	    <div class="relative w-full flex justify-center lg:justify-end">
+	      <!-- Ambient Glow Backdrop -->
+	      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-emerald-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+	      
+	      <!-- CloudRouter Component Island -->
+	      <CloudRouter client:visible />
+	    </div>
+
+	  </div>
+	</div>
+
+	<!-- FULL-WIDTH LIGHT-GRAY TRUST BAR -->
+	<section class="bg-slate-100/80 border-b border-slate-200 py-6">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="flex flex-wrap items-center justify-center gap-8 md:gap-14 text-slate-600 font-sans font-bold text-sm tracking-wide">
+				<span class="text-slate-400 text-xs font-semibold uppercase tracking-widest mr-2">Supported Platforms & Standards:</span>
+				{trustBadges.map((badge, idx) => (
+					<div class="flex items-center gap-3">
+						<span class="hover:text-slate-900 transition-colors">{badge}</span>
+						{idx < trustBadges.length - 1 && <span class="text-slate-300">•</span>}
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Core Services Grid (6 Highlighted Areas with Business Outcomes) -->
+	<section id="capabilities" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="mb-14 text-center max-w-3xl mx-auto">
+			<span class="font-sans text-xs uppercase tracking-widest text-emerald-600 font-semibold">Capabilities & Solutions</span>
+			<h2 class="mt-2 text-3xl sm:text-4xl font-bold font-sans text-slate-900">Enterprise Infrastructure Services</h2>
+			<p class="mt-4 text-slate-600 text-base font-sans leading-relaxed">
+				Engineering solutions built to deliver measurable business outcomes for modern enterprises, regulated industries, and AI workloads.
+			</p>
+		</div>
+
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+			{coreCapabilities.map((item, index) => (
+				<div class="p-8 rounded-2xl border border-slate-200 bg-white shadow-sm flex flex-col justify-between hover:border-emerald-400 hover:shadow-md transition-all duration-300 group">
+					<div>
+						<div class="flex items-center justify-between mb-6">
+							<div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 group-hover:scale-110 group-hover:bg-emerald-100 transition-all duration-300">
+								<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={item.icon} />
+								</svg>
+							</div>
+							<span class="text-xs font-mono font-bold text-slate-400 tracking-widest uppercase">0{index + 1}</span>
+						</div>
+						<span class="text-xs font-mono font-semibold text-emerald-600 uppercase tracking-wider">{item.category}</span>
+						<h3 class="text-xl font-bold font-sans text-slate-900 mt-2 mb-4 group-hover:text-emerald-600 transition-colors">{item.title}</h3>
+						
+						<!-- Service Scope Section -->
+						<div class="mb-6">
+							<h4 class="text-slate-900 font-bold text-xs uppercase tracking-wider mb-2 font-sans">Core Scope</h4>
+							<ul class="space-y-2 text-slate-600 text-xs font-sans">
+								{item.tasks.map((task) => (
+									<li class="flex items-start">
+										<span class="text-emerald-500 mr-2 font-bold">•</span>
+										<span>{task}</span>
+									</li>
+								))}
+							</ul>
+						</div>
+
+						<!-- Business Outcome Sub-section -->
+						<div class="pt-4 border-t border-slate-100 bg-slate-50/60 p-3.5 rounded-xl border border-slate-200/60">
+							<p class="text-slate-800 text-xs leading-relaxed font-sans">
+								<strong class="text-slate-900 font-bold">Business outcome:</strong> {item.outcome}
+							</p>
+						</div>
+					</div>
+
+					<div class="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-sans font-semibold text-emerald-600 group-hover:translate-x-1 transition-transform">
+						<span>Schedule Consultation</span>
+						<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+						</svg>
+					</div>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<!-- WHY RACOONA? SECTION (Bento Grid) -->
+	<section class="py-24 border-t border-slate-200 bg-slate-50">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="mb-14 text-center max-w-3xl mx-auto">
+				<span class="font-sans text-xs uppercase tracking-widest text-emerald-600 font-semibold">Value Proposition</span>
+				<h2 class="mt-2 text-3xl sm:text-4xl font-bold font-sans text-slate-900">Why Racoona?</h2>
+				<p class="mt-3 text-slate-600 text-base font-sans">
+					We bridge senior engineering execution with strategic business priorities.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+				{whyRacoonaPillars.map((pillar) => (
+					<div class={`p-8 rounded-2xl border border-slate-200 bg-white shadow-sm hover:border-emerald-400 hover:shadow-md transition-all duration-300 ${pillar.colSpan} flex flex-col justify-between relative overflow-hidden group`}>
+						<div class={`absolute top-0 right-0 w-32 h-32 ${pillar.bgAccent} rounded-full blur-2xl pointer-events-none`}></div>
+						<div>
+							<div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 mb-6 group-hover:scale-110 transition-transform">
+								<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d={pillar.icon} />
+								</svg>
+							</div>
+							<h3 class="text-xl font-bold font-sans text-slate-900 mb-3">{pillar.title}</h3>
+							<p class="text-slate-600 text-sm font-sans leading-relaxed">{pillar.desc}</p>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- PROOF / QUANTIFIED RESULTS SECTION -->
+	<section class="py-24 border-t border-b border-slate-200 bg-white">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="mb-16 text-center max-w-3xl mx-auto">
+				<span class="font-sans text-xs uppercase tracking-widest text-emerald-600 font-semibold">Measured Impact</span>
+				<h2 class="mt-2 text-3xl sm:text-4xl font-bold font-sans text-slate-900">Quantified Business Results</h2>
+				<p class="mt-3 text-slate-600 text-base font-sans">
+					Proven benchmarks delivered across production migrations and enterprise operations.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+				{quantifiedResults.map((metric) => (
+					<div class="p-8 rounded-2xl border border-slate-200 bg-slate-50/60 hover:bg-white hover:border-emerald-400 hover:shadow-lg transition-all duration-300">
+						<div class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-sans text-emerald-600 tracking-tight mb-3">
+							{metric.value}
+						</div>
+						<div class="text-xs sm:text-sm font-sans font-semibold text-slate-700 uppercase tracking-wider max-w-[200px] mx-auto leading-snug">
+							{metric.label}
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- TECHNICAL FAQ SECTION -->
+	<section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="mb-14 text-center max-w-3xl mx-auto">
+			<span class="font-sans text-xs uppercase tracking-widest text-emerald-600 font-semibold">Frequently Asked Questions</span>
+			<h2 class="mt-2 text-3xl sm:text-4xl font-bold font-sans text-slate-900">Technical & Operational FAQ</h2>
+			<p class="mt-3 text-slate-600 text-base font-sans">
+				Everything you need to know about our infrastructure assessments, migration process, and compliance support.
+			</p>
+		</div>
+
+		<FaqAccordion client:visible />
+	</section>
+
+	<!-- FINAL CTA SECTION -->
+	<section class="py-20 border-t border-slate-200 text-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-slate-50">
+		<div class="max-w-2xl mx-auto">
+			<h2 class="text-3xl font-bold font-sans text-slate-900 mb-4">Ready to Modernize Your Infrastructure?</h2>
+			<p class="text-slate-600 text-base font-sans mb-8 leading-relaxed">
+				Schedule an infrastructure assessment with our senior engineering team to evaluate security, uptime readiness, and migration architecture.
+			</p>
+			<a href={`${base}/contact?interest=it-services`} class="inline-block px-8 py-4 rounded-xl bg-emerald-600 text-white font-bold text-base hover:bg-emerald-700 transition-all duration-300 font-sans shadow-md hover:shadow-lg">
+				Schedule an Infrastructure Assessment
+			</a>
+		</div>
+	</section>
+
+	<!-- STICKY BOTTOM-RIGHT CTA WIDGET -->
+	<StickyAssessmentCTA contactUrl={`${base}/contact?interest=it-services`} client:idle />
+</BaseLayout>

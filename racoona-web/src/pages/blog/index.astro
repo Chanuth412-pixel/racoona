@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const techPosts = await getCollection('technology');
+const foodPosts = await getCollection('food');
+const servicePosts = await getCollection('services');
+
+const allPosts = [
+  ...techPosts.map(p => ({ ...p, category: 'technology' })),
+  ...foodPosts.map(p => ({ ...p, category: 'food' })),
+  ...servicePosts.map(p => ({ ...p, category: 'services' })),
+].sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+---
+
+<BaseLayout title="Blog & Insights - Racoona AI" description="Insights across AI engineering, hospitality sales operations, and cloud migration strategies.">
+  <div class="relative overflow-hidden py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono font-semibold text-slate-800 uppercase tracking-widest px-3 py-1 rounded-full border border-slate-300 bg-white shadow-sm">
+          Knowledge & Telemetry
+        </span>
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 font-sans mt-4">
+          Insights & Case Studies
+        </h1>
+        <p class="mt-4 text-slate-600 font-sans">
+          Technical deep-dives, operational case studies, and enterprise cloud migration frameworks from Racoona AI.
+        </p>
+      </div>
+
+      <!-- Category Filter Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div class="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <h3 class="text-lg font-bold text-slate-900 font-sans mb-2">Technology</h3>
+          <p class="text-xs text-slate-600 font-sans">AI inference pipelines, vLLM orchestration, and rapid proof of concepts.</p>
+        </div>
+        <div class="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <h3 class="text-lg font-bold text-slate-900 font-sans mb-2">Food & Hospitality</h3>
+          <p class="text-xs text-slate-600 font-sans">Sales operations, Dwaraka's Bawarchi partnership, and culinary analytics.</p>
+        </div>
+        <div class="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <h3 class="text-lg font-bold text-slate-900 font-sans mb-2">Services & Ops</h3>
+          <p class="text-xs text-slate-600 font-sans">Cloud migration, GovCloud FedRAMP compliance, and MLOps.</p>
+        </div>
+      </div>
+
+      <!-- Post Listing Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {allPosts.map(post => (
+          <a href={`${base}/blog/${post.category}/${post.id}`} class="group p-6 rounded-2xl border border-slate-200 bg-white hover:border-slate-300 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-800 px-2.5 py-0.5 rounded bg-slate-100 border border-slate-200">
+                  {post.category}
+                </span>
+                <span class="text-[11px] font-mono text-slate-500">
+                  {new Date(post.data.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                </span>
+              </div>
+              <h2 class="text-xl font-bold font-sans text-slate-900 group-hover:text-slate-700 transition-colors mb-3">
+                {post.data.title}
+              </h2>
+              <p class="text-sm font-sans text-slate-600 leading-relaxed mb-6">
+                {post.data.description}
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center text-xs font-mono text-slate-900 font-semibold group-hover:translate-x-1 transition-transform">
+              <span>Read Article &rarr;</span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

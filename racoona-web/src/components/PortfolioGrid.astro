@@ -1,0 +1,51 @@
+---
+// PortfolioGrid.astro (Editorial Venue Lookbook)
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+
+const venues = [
+  {
+    title: "Woodfired Operations — Austin, TX",
+    name: "Hearth & Barrel",
+    category: "Culinary Asset Holdings",
+    image: `${base}/food-hero.jpg`
+  },
+  {
+    title: "Modern Asian Fusion — New York, NY",
+    name: "Umami Junction",
+    category: "Culinary Asset Holdings",
+    image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    title: "Organic QSR — Miami, FL",
+    name: "Primal Greens",
+    category: "Culinary Asset Holdings",
+    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80"
+  }
+];
+---
+
+<div class="w-full">
+  <!-- Asymmetric Editorial Image Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {venues.map((venue) => (
+      <div class="group flex flex-col justify-between">
+        <!-- Image Container (Clean 1px Border, No Overlays) -->
+        <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden border border-zinc-800/80 bg-zinc-950">
+          <img 
+            src={venue.image} 
+            alt={venue.name} 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
+          />
+        </div>
+
+        <!-- Editorial Caption Below Image -->
+        <div class="mt-4 font-sans">
+          <span class="text-xs font-sans text-zinc-500 uppercase tracking-wider block mb-1">{venue.category}</span>
+          <h3 class="text-lg font-bold text-zinc-100 group-hover:text-purple-400 transition-colors">{venue.name}</h3>
+          <p class="text-xs font-sans text-zinc-400 mt-0.5">{venue.title}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

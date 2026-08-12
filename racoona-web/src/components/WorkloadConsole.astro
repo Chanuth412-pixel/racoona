@@ -1,0 +1,103 @@
+---
+// WorkloadConsole.astro
+---
+
+<div class="w-full max-w-2xl mx-auto bg-zinc-950 border border-zinc-800/80 rounded-xl overflow-hidden shadow-2xl shadow-black/60 font-sans selection:bg-cyan-500/30">
+  
+  <!-- Console Header -->
+  <div class="flex items-center justify-between px-5 py-4 border-b border-zinc-800/80 bg-zinc-900/30">
+    <div class="flex items-center gap-2.5">
+      <!-- Subtle spinning loader icon -->
+      <svg class="animate-spin text-cyan-400 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+      <span class="text-sm font-semibold font-sans text-zinc-100 tracking-tight">Active Infrastructure Operations</span>
+    </div>
+    <span class="px-2 py-1 rounded bg-emerald-500/10 text-emerald-400 text-[10px] font-sans font-semibold border border-emerald-500/20 tracking-wider">
+      SYSTEMS SECURE
+    </span>
+  </div>
+
+  <div class="flex flex-col divide-y divide-zinc-800/60">
+
+    <!-- Workload 1: Zero-Downtime Migration -->
+    <div class="p-5 hover:bg-zinc-900/30 transition-colors group">
+      <div class="flex justify-between items-start mb-3">
+        <div>
+          <h4 class="text-zinc-100 text-sm font-bold font-sans mb-1">Live Database Migration</h4>
+          <p class="text-zinc-400 text-xs font-mono">Legacy On-Prem → AWS RDS (PostgreSQL)</p>
+        </div>
+        <span class="text-cyan-400 text-[10px] font-mono font-bold animate-pulse">SYNCING...</span>
+      </div>
+      <!-- Custom Progress Bar -->
+      <div class="w-full bg-zinc-900 rounded-full h-1.5 border border-zinc-800 overflow-hidden relative">
+        <div class="bg-cyan-500 h-full rounded-full w-[84%] relative">
+          <!-- Animated highlight sweeping across the bar -->
+          <div class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full animate-[shimmer_2s_infinite]"></div>
+        </div>
+      </div>
+      <div class="flex justify-between text-[10px] font-sans text-zinc-400 mt-2 font-medium">
+        <span>84.2 GB Transferred</span>
+        <span class="text-zinc-400 font-mono">Est. 12m remaining</span>
+      </div>
+    </div>
+
+    <!-- Workload 2: IAM & Security -->
+    <div class="p-5 hover:bg-zinc-900/30 transition-colors group">
+      <div class="flex justify-between items-start mb-3">
+        <div>
+          <h4 class="text-zinc-100 text-sm font-bold font-sans mb-1">IAM Perimeter Defense</h4>
+          <p class="text-zinc-400 text-xs font-mono">Active Directory Role Verification</p>
+        </div>
+        <div class="flex gap-1">
+          <!-- Micro lock icon -->
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+        </div>
+      </div>
+      <!-- Rolling Security Log -->
+      <div class="bg-[#050505] rounded border border-zinc-800 p-2.5 text-[10.5px] font-mono text-zinc-400 h-16 overflow-hidden relative">
+         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#050505] pointer-events-none z-10"></div>
+         <div class="animate-[log-scroll_5s_infinite_linear] flex flex-col gap-1">
+           <div><span class="text-zinc-600">ID_9921:</span> Validating user token [us-east-1] <span class="text-emerald-400 font-bold ml-2">PASS</span></div>
+           <div><span class="text-zinc-600">ID_9922:</span> Checking cross-region subnet policy <span class="text-emerald-400 font-bold ml-2">PASS</span></div>
+           <div><span class="text-zinc-600">ID_9923:</span> Blocking unauthorized SSH attempt <span class="text-cyan-400 font-bold ml-2">DEFLECTED</span></div>
+           <div><span class="text-zinc-600">ID_9924:</span> Validating user token [eu-central-1] <span class="text-emerald-400 font-bold ml-2">PASS</span></div>
+         </div>
+      </div>
+    </div>
+
+    <!-- Workload 3: 24/7 Monitoring -->
+    <div class="p-5 hover:bg-zinc-900/30 transition-colors group">
+      <div class="flex justify-between items-center">
+        <div>
+          <h4 class="text-zinc-100 text-sm font-bold font-sans mb-1">Global API Gateway Latency</h4>
+          <p class="text-zinc-400 text-xs font-mono">Continuous Health Probes (12ms avg)</p>
+        </div>
+        
+        <!-- Live Sparkline Chart -->
+        <div class="flex items-end gap-1 h-8">
+          <div class="w-1.5 bg-blue-500/40 h-[40%] rounded-t-[1px]"></div>
+          <div class="w-1.5 bg-blue-500/40 h-[60%] rounded-t-[1px]"></div>
+          <div class="w-1.5 bg-blue-500/40 h-[50%] rounded-t-[1px]"></div>
+          <div class="w-1.5 bg-blue-500/80 h-[80%] rounded-t-[1px]"></div>
+          <div class="w-1.5 bg-blue-500/40 h-[30%] rounded-t-[1px]"></div>
+          <div class="w-1.5 bg-blue-500/40 h-[45%] rounded-t-[1px]"></div>
+          <div class="w-1.5 bg-blue-500/40 h-[55%] rounded-t-[1px]"></div>
+          <div class="w-1.5 bg-cyan-400 h-[35%] rounded-t-[1px] animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.5)]"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  @keyframes shimmer {
+    100% { transform: translateX(100%); }
+  }
+  @keyframes log-scroll {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-40px); }
+  }
+</style>

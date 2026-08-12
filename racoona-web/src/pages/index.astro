@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AnimatedHero from '../components/AnimatedHero.tsx';
+import HeroIsometric from '../components/HeroIsometric.tsx';
+import AnimatedBentoGrid from '../components/AnimatedBentoGrid.tsx';
+
+const whyRacoonaItems = [
+	{
+		title: 'Engineering-First',
+		description: 'Production-grade software architecture and infrastructure engineered to rigorous technical standards with zero compromises.',
+		icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
+	},
+	{
+		title: 'Security by Design',
+		description: 'FedRAMP, NIST, and HIPAA compliant security protocols seamlessly embedded into every layer of deployment.',
+		icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'
+	},
+	{
+		title: 'Cloud + AI Expertise',
+		description: 'Deep domain specialization in multi-cloud provisioning (AWS, Azure, GCP) and high-throughput LLM model execution.',
+		icon: 'M13 10V3L4 14h7v7l9-11h-7z'
+	},
+	{
+		title: '24/7 Observability',
+		description: 'Continuous telemetry monitoring, automated anomaly detection, and rapid SLA-backed incident mitigation.',
+		icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z'
+	},
+	{
+		title: 'Enterprise-Ready',
+		description: 'Scalable, fault-tolerant systems built to power mission-critical workloads for global market leaders.',
+		icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m3 0h1m-4-8l2-2m0 0l2 2m-2-2v4'
+	}
+];
+
+const whoWeServeItems = [
+	{
+		name: 'Enterprise IT',
+		description: 'Scaling multi-cloud operations & legacy modernization.',
+		icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'
+	},
+	{
+		name: 'SaaS',
+		description: 'Automating continuous delivery & infrastructure scaling.',
+		icon: 'M3 15a4 4 0 004 4h9a5 5 0 001.09-9.88A5.5 5.5 0 008.5 6 5.5 5.5 0 003 11.5A4 4 0 003 15z'
+	},
+	{
+		name: 'Gov Contractors',
+		description: 'Enforcing NIST, HIPAA, and FedRAMP compliance.',
+		icon: 'M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z'
+	},
+	{
+		name: 'Healthcare',
+		description: 'Securing sensitive data and operational pipelines.',
+		icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'
+	},
+	{
+		name: 'Data-intensive orgs',
+		description: 'Accelerating petabyte-scale data flow & analytics.',
+		icon: 'M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4'
+	},
+	{
+		name: 'AI/ML companies',
+		description: 'Optimizing model inference & automated MLOps.',
+		icon: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z'
+	}
+];
+---
+
+<BaseLayout title="Racoona AI - Technology & Investment Infrastructure" description="Corporate home of Racoona AI. Enterprise software development, managed IT operations, and hospitality asset scaling.">
+	<main class="relative z-10 overflow-hidden bg-slate-50">
+		
+		<!-- Hero Section with Baseten-Style 2.5D Isometric Architecture Canvas -->
+		<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+				
+				<!-- Left Column: Hero Title & Action Controls -->
+				<div class="flex flex-col justify-center text-left">
+					<AnimatedHero client:load />
+				</div>
+
+				<!-- Right Column: 2.5D Layered Isometric Animation Island -->
+				<div class="relative w-full flex justify-center lg:justify-end">
+					<HeroIsometric client:load />
+				</div>
+
+			</div>
+		</section>
+
+		<!-- Trust Metrics Bar (Directly below Hero) -->
+		<section class="w-full bg-slate-900 text-white py-8 border-y border-slate-800">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x-0 md:divide-x divide-slate-800">
+					<div class="flex flex-col items-center justify-center p-2">
+						<span class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono tracking-tight">42%</span>
+						<span class="text-xs uppercase tracking-wider text-slate-300 font-medium mt-1 font-sans">Lower Cloud Costs</span>
+					</div>
+					<div class="flex flex-col items-center justify-center p-2">
+						<span class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono tracking-tight">99.99%</span>
+						<span class="text-xs uppercase tracking-wider text-slate-300 font-medium mt-1 font-sans">Production Uptime</span>
+					</div>
+					<div class="flex flex-col items-center justify-center p-2">
+						<span class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono tracking-tight">3x</span>
+						<span class="text-xs uppercase tracking-wider text-slate-300 font-medium mt-1 font-sans">Faster Deployments</span>
+					</div>
+					<div class="flex flex-col items-center justify-center p-2">
+						<span class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono tracking-tight">0</span>
+						<span class="text-xs uppercase tracking-wider text-slate-300 font-medium mt-1 font-sans">Critical Incidents</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- 3-Column Animated Bento Grid Section -->
+		<section id="sectors" class="py-12 border-t border-slate-200">
+			<AnimatedBentoGrid client:visible />
+		</section>
+
+		<!-- "Why Racoona" Grid Section -->
+		<section class="py-16 bg-slate-100/70 border-t border-slate-200">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="text-center max-w-3xl mx-auto mb-12">
+					<span class="font-sans text-xs uppercase tracking-widest text-emerald-600 font-semibold">Value Proposition</span>
+					<h2 class="mt-2 text-3xl sm:text-4xl font-bold font-sans text-slate-900 tracking-tight">Why Racoona</h2>
+					<p class="mt-3 text-slate-600 text-sm font-sans">Enterprise-grade capabilities engineered for technical excellence and measurable ROI.</p>
+				</div>
+
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+					{whyRacoonaItems.map((item, idx) => (
+						<div class={`p-6 rounded-xl bg-white border-slate-200 shadow-sm border hover:border-emerald-400 hover:shadow-md transition-all duration-300 flex flex-col justify-between ${idx === 4 ? 'md:col-span-2 lg:col-span-1' : ''}`}>
+							<div>
+								<div class="w-10 h-10 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 mb-4">
+									<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d={item.icon} />
+									</svg>
+								</div>
+								<h3 class="text-lg font-bold font-sans text-slate-900 mb-2">{item.title}</h3>
+								<p class="text-slate-600 text-sm font-sans leading-relaxed">{item.description}</p>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- "Who We Serve" Section -->
+		<section class="py-16 bg-white border-t border-slate-200">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="text-center max-w-3xl mx-auto mb-12">
+					<span class="font-sans text-xs uppercase tracking-widest text-emerald-600 font-semibold">Client Ecosystem</span>
+					<h2 class="mt-2 text-3xl sm:text-4xl font-bold font-sans text-slate-900 tracking-tight">Who We Serve</h2>
+					<p class="mt-3 text-slate-600 text-sm font-sans">Empowering high-growth vertical market leaders across specialized domain sectors.</p>
+				</div>
+
+				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+					{whoWeServeItems.map((vertical) => (
+						<div class="p-6 rounded-xl border border-slate-200 bg-slate-50/50 hover:bg-white hover:border-slate-300 transition-all duration-200 flex items-start gap-4">
+							<div class="w-10 h-10 rounded-lg bg-slate-900 text-white flex-shrink-0 flex items-center justify-center">
+								<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d={vertical.icon} />
+								</svg>
+							</div>
+							<div>
+								<h3 class="text-base font-bold font-sans text-slate-900">{vertical.name}</h3>
+								<p class="text-slate-600 text-xs font-sans mt-1 leading-relaxed">{vertical.description}</p>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+	</main>
+</BaseLayout>
+

@@ -1,0 +1,196 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '@fontsource/geist-sans';
+import '@fontsource/geist-mono';
+import '../styles/global.css';
+import NavbarNav from '../components/NavbarNav';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title = "Racoona AI - Technology & Investment Infrastructure", description = "Corporate home of Racoona AI. Enterprise software development, managed IT operations, and hospitality asset scaling." } = Astro.props;
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+const pathname = Astro.url.pathname;
+
+const navItems = [
+  { name: 'Software', href: `${base}/software` },
+  { name: 'IT Services', href: `${base}/it-services` },
+  { name: 'Food & Hospitality', href: `${base}/food-hospitality` },
+  { name: 'Blog', href: `${base}/blog` },
+  { name: 'Contact', href: `${base}/contact` },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<ClientRouter fallback="animate" />
+	</head>
+	<body class="bg-slate-50 text-slate-600 antialiased min-h-screen flex flex-col relative selection:bg-blue-600 selection:text-white font-sans">
+		
+		<!-- Header / Navbar (Persisted across view transitions) -->
+		<header transition:persist class="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="flex justify-between items-center h-20">
+					
+					<!-- Racoona AI Logotype -->
+					<a href={`${base}/`} class="flex items-center gap-3.5 group focus:outline-none">
+					  <div class="relative flex items-center justify-center h-10 w-10 rounded-xl border border-slate-200 bg-slate-50 group-hover:border-black transition-all duration-300 transform group-hover:scale-105 shadow-sm">
+					    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-black group-hover:rotate-6 transition-transform duration-300">
+					      <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					      <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					      <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					    </svg>
+ 					  </div>
+
+					  <div class="flex flex-col justify-center">
+					    <span class="text-xl font-bold font-sans tracking-tight text-black leading-none">
+					      Racoona <span class="text-black font-extrabold">AI</span>
+					    </span>
+					  </div>
+					</a>
+					
+					<!-- Desktop Nav Pill Rail with Animated Sliding Active Indicator -->
+					<NavbarNav client:load items={navItems} currentPath={pathname} />
+
+					<!-- Header CTA Button -->
+					<div class="hidden md:flex items-center">
+						<a 
+							href={`${base}/contact`} 
+							class="px-5 py-2.5 rounded-xl bg-black hover:bg-slate-800 text-white text-sm font-sans font-bold transition-all duration-300 transform hover:scale-105 shadow-sm"
+						>
+							Get in Touch
+						</a>
+					</div>
+
+					<!-- Mobile Menu Button -->
+					<div class="md:hidden">
+						<button id="mobile-menu-button" type="button" class="text-slate-600 hover:text-black focus:outline-none p-2 rounded-md hover:bg-slate-100" aria-label="Toggle menu">
+							<svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+								<path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+							</svg>
+						</button>
+					</div>
+
+				</div>
+			</div>
+
+			<!-- Mobile Menu Panel -->
+			<div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 bg-white/95 backdrop-blur-xl px-4 pt-3 pb-4 space-y-2">
+				{navItems.map(item => (
+					<a href={item.href} class="block px-3 py-2 rounded-md text-base font-sans font-medium text-slate-700 hover:text-black hover:bg-slate-100 transition-all">
+						{item.name}
+					</a>
+				))}
+				<a href={`${base}/contact`} class="block w-full text-center mt-4 px-4 py-2.5 rounded-md bg-black text-white font-sans text-sm font-bold">
+					Get in Touch
+				</a>
+			</div>
+		</header>
+
+		<!-- Main content with smooth View Transitions -->
+		<main class="flex-grow" transition:animate="fade">
+			<slot />
+		</main>
+
+		<!-- Footer -->
+		<footer class="border-t border-slate-200 bg-white py-12">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+					<div class="space-y-4">
+						<!-- Racoona AI Logotype -->
+						<a href={`${base}/`} class="flex items-center gap-3 group focus:outline-none">
+						  <div class="relative flex items-center justify-center h-9 w-9 rounded-lg border border-slate-200 bg-slate-50 group-hover:border-black transition-all duration-300">
+						    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-black">
+						      <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						      <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						      <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						    </svg>
+						  </div>
+						  <div class="flex flex-col justify-center">
+						    <span class="text-lg font-bold font-sans tracking-tight text-black leading-none">
+						      Racoona <span class="text-black font-extrabold">AI</span>
+						    </span>
+						  </div>
+						</a>
+						<p class="text-xs text-slate-500 max-w-xs font-sans">
+							Leading multi-sector enterprise solutions spanning software engineering, bespoke IT consulting, and culinary hospitality services.
+						</p>
+					</div>
+					<div>
+						<h3 class="font-sans text-xs font-bold uppercase tracking-wider text-black mb-4">Sectors</h3>
+						<ul class="space-y-2 text-xs font-sans">
+							<li><a href={`${base}/software`} class="text-gray-600 hover:text-black transition-colors">Software</a></li>
+							<li><a href={`${base}/it-services`} class="text-gray-600 hover:text-black transition-colors">IT Services</a></li>
+							<li><a href={`${base}/food-hospitality`} class="text-gray-600 hover:text-black transition-colors">Food & Hospitality</a></li>
+						</ul>
+					</div>
+					<div>
+						<h3 class="font-sans text-xs font-bold uppercase tracking-wider text-black mb-4">Corporate</h3>
+						<ul class="space-y-2 text-xs font-sans">
+							<li><a href={`${base}/about`} class="text-gray-600 hover:text-black transition-colors">About Us</a></li>
+							<li><a href={`${base}/contact`} class="text-gray-600 hover:text-black transition-colors">Contact</a></li>
+						</ul>
+					</div>
+					<div>
+						<h3 class="font-sans text-xs font-bold uppercase tracking-wider text-black mb-4">Contact</h3>
+						<p class="text-xs text-gray-600 font-sans leading-relaxed">
+							info@racoona.com<br/>
+							+1 (555) 0199-321<br/><br/>
+							<strong class="text-black">Headquarters:</strong><br/>
+							Belvoir Woods Terrace,<br/>
+							Ashburn, VA 20148
+						</p>
+					</div>
+				</div>
+				<div class="mt-8 pt-8 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 font-sans">
+					<p>&copy; {new Date().getFullYear()} Racoona AI. All rights reserved.</p>
+					<div class="flex space-x-6 mt-4 sm:mt-0">
+						<a href={`${base}/privacy`} class="hover:text-black transition-colors">Privacy Policy</a>
+						<a href={`${base}/terms`} class="hover:text-black transition-colors">Terms of Service</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<script>
+			// Instant scroll-to-top lifecycle on page transitions to eliminate scroll jump stutter
+			document.addEventListener('astro:before-swap', (event: any) => {
+				window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+				if (event.newDocument) {
+					event.newDocument.documentElement.scrollTop = 0;
+					event.newDocument.body.scrollTop = 0;
+				}
+			});
+
+			document.addEventListener('astro:after-swap', () => {
+				window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+			});
+
+			// Mobile menu toggle logic
+			const button = document.getElementById('mobile-menu-button');
+			const menu = document.getElementById('mobile-menu');
+			const iconOpen = document.getElementById('menu-icon-open');
+			const iconClose = document.getElementById('menu-icon-close');
+
+			if (button && menu && iconOpen && iconClose) {
+				button.addEventListener('click', () => {
+					menu.classList.toggle('hidden');
+					iconOpen.classList.toggle('hidden');
+					iconClose.classList.toggle('hidden');
+				});
+			}
+		</script>
+	</body>
+</html>

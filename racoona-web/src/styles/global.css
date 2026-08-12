@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  *,
+  ::before,
+  ::after {
+    font-family: 'Geist Sans', sans-serif !important;
+  }
+
+  body {
+    background-color: #09090b;
+    color: #a1a1aa;
+    /* text-zinc-400 */
+    font-family: 'Geist Sans', sans-serif !important;
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center center;
+  }
+
+  /* Adds a subtle radial glow in the center of the screen */
+  body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1200px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+/* Pure CSS Marquee Fallback for 100% Reliability */
+@keyframes custom-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: custom-marquee 40s linear infinite !important;
+}
+
+/* GPU Hardware-Accelerated Title Animations (Zero-JS 120fps) */
+@keyframes titleFadeUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-title-1 {
+  opacity: 0;
+  animation: titleFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
+  will-change: transform, opacity;
+}
+
+.animate-title-2 {
+  opacity: 0;
+  animation: titleFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+  will-change: transform, opacity;
+}
+
+.animate-title-3 {
+  opacity: 0;
+  animation: titleFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+  will-change: transform, opacity;
+}

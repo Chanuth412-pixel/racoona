@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm';
+---
+
+<BaseLayout title="Contact - Racoona AI" description="Connect with Racoona AI venture, technology, and food divisions.">
+	<div class="relative overflow-hidden py-20 bg-slate-50">
+
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+			<div class="text-center max-w-3xl mx-auto mb-12">
+				<h1 class="text-4xl font-extrabold tracking-tight font-sans text-slate-900 sm:text-5xl">
+					Get In Touch
+				</h1>
+				<p class="mt-4 text-slate-600 font-sans">
+					Have a project, investment proposal, or general inquiry? Contact our specialized units directly through the interface below.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start mb-16">
+				<!-- Corporate Info & Address Card -->
+				<div class="lg:col-span-1 p-8 rounded-2xl border border-slate-200 bg-white shadow-md space-y-6">
+					<h2 class="text-xl font-bold font-sans text-slate-900">Corporate HQ</h2>
+					<p class="text-sm text-slate-600 leading-relaxed font-sans">
+						Racoona AI coordinates multi-sector enterprise software engineering, IT services, and asset operations.
+					</p>
+
+					<div class="border-t border-slate-200 pt-6 space-y-4 font-sans">
+						<div class="flex items-start gap-3">
+							<div class="p-2 rounded-lg bg-slate-100 text-slate-800 border border-slate-200">
+								<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+								</svg>
+							</div>
+							<div>
+								<h3 class="text-xs font-mono uppercase text-slate-500 tracking-wider">Address</h3>
+								<p class="text-sm font-medium text-slate-900 mt-1">
+									Belvoir Woods Terrace<br />
+									Ashburn, VA 20148
+								</p>
+							</div>
+						</div>
+
+						<div class="flex items-start gap-3 pt-2">
+							<div class="p-2 rounded-lg bg-slate-100 text-slate-800 border border-slate-200">
+								<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+								</svg>
+							</div>
+							<div>
+								<h3 class="text-xs font-mono uppercase text-slate-500 tracking-wider">Email</h3>
+								<p class="text-sm font-medium text-slate-900 mt-1">info@racoona.com</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Contact Form -->
+				<div class="lg:col-span-2">
+					<ContactForm client:visible />
+				</div>
+			</div>
+		</div>
+	</div>
+</BaseLayout>
