@@ -2,9 +2,15 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 
+// Check which repository is running the build
+const isClientRepo = process.env.GITHUB_REPOSITORY === 'racoona-org/racoona-dashboard';
+
 export default defineConfig({
-  site: 'https://racoona-org.github.io',
-  base: '/racoona-dashboard', 
+  // Dynamically assign the site URL
+  site: isClientRepo ? 'https://racoona.ai' : 'https://Chanuth412-pixel.github.io',
+  
+  // Dynamically assign the base path
+  base: isClientRepo ? '/' : '/racoona',
   integrations: [
     react(),
     tailwind()
