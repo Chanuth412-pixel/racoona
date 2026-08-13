@@ -44,15 +44,8 @@ const navItems = [
 				<div class="flex justify-between items-center h-20">
 					
 					<!-- Racoona AI Logotype -->
-					<a href={`${base}/`} class="flex items-center gap-3.5 group focus:outline-none">
-					  <div class="relative flex items-center justify-center h-10 w-10 rounded-xl border border-slate-200 bg-slate-50 group-hover:border-black transition-all duration-300 transform group-hover:scale-105 shadow-sm">
-					    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-black group-hover:rotate-6 transition-transform duration-300">
-					      <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					      <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					      <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					    </svg>
- 					  </div>
-
+					<a href={`${base}/`} class="logo-link flex items-center gap-3.5 group focus:outline-none">
+					  <img src={`${base}/raccoon-logo.png`} alt="Racoona AI Raccoon Logo" class="nav-logo group-hover:scale-105 transition-transform duration-300" />
 					  <div class="flex flex-col justify-center">
 					    <span class="text-xl font-bold font-sans tracking-tight text-black leading-none">
 					      Racoona <span class="text-black font-extrabold">AI</span>
@@ -110,14 +103,8 @@ const navItems = [
 				<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
 					<div class="space-y-4">
 						<!-- Racoona AI Logotype -->
-						<a href={`${base}/`} class="flex items-center gap-3 group focus:outline-none">
-						  <div class="relative flex items-center justify-center h-9 w-9 rounded-lg border border-slate-200 bg-slate-50 group-hover:border-black transition-all duration-300">
-						    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-black">
-						      <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-						      <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-						      <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-						    </svg>
-						  </div>
+						<a href={`${base}/`} class="logo-link flex items-center gap-3 group focus:outline-none">
+						  <img src={`${base}/raccoon-logo.png`} alt="Racoona AI Raccoon Logo" class="nav-logo h-9 w-auto" />
 						  <div class="flex flex-col justify-center">
 						    <span class="text-lg font-bold font-sans tracking-tight text-black leading-none">
 						      Racoona <span class="text-black font-extrabold">AI</span>

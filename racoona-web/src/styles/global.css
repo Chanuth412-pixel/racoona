@@ -83,3 +83,21 @@
   animation: titleFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
   will-change: transform, opacity;
 }
+
+/* Standard class for your logo in the navbar */
+.nav-logo {
+  /* Set a clean height (e.g., typical for navbars) */
+  height: 40px; 
+  /* 'auto' keeps the aspect ratio perfect */
+  width: auto; 
+  
+  /* Standard modern adjustments for rendering */
+  display: block; 
+  max-width: 100%; /* Safety for responsiveness */
+  object-fit: contain;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+}
