@@ -4,49 +4,55 @@ const techStack = [
     category: "Machine Learning", 
     title: "Python", 
     details: "PyTorch, vLLM, TensorRT",
-    svg: `<svg class="w-6 h-6 text-blue-600 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 6 4 6 6v3h6v1H5C3 10 2 11.48 2 14v4c0 2 2 3.5 4 3.5h3v-3c0-2 1.5-3.5 3.5-3.5h3.5c1.5 0 2.5-1 2.5-2.5V9c0-2-1.5-3.5-3.5-3.5H12V4c0-1.5-.5-2-3-2z"/><circle cx="8.5" cy="5.5" r="1" fill="currentColor"/><circle cx="15.5" cy="18.5" r="1" fill="currentColor"/></svg>`
+    imgSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
+  },
+  { 
+    category: "Deep Learning", 
+    title: "PyTorch", 
+    details: "Neural Networks, LLM Fine-Tuning",
+    imgSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg"
   },
   { 
     category: "Backend Systems", 
     title: "Node.js", 
     details: "Distributed Services, Async I/O",
-    svg: `<svg class="w-6 h-6 text-emerald-600 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L3 7v10l9 5 9-5V7l-9-5z"/><path d="M12 12l9-5M12 12v10M12 12L3 7"/></svg>`
+    imgSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"
   },
   { 
     category: "Interface Layer", 
     title: "React", 
     details: "Single Page Applications, SSR",
-    svg: `<svg class="w-6 h-6 text-blue-600 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(30 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(90 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(150 12 12)"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>`
+    imgSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"
   },
   { 
     category: "Static Architecture", 
     title: "Astro", 
     details: "Island Hydration, Performance",
-    svg: `<svg class="w-6 h-6 text-purple-600 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L4.5 20.5h15L12 2z"/><path d="M9.5 15h5"/><path d="M12 6l-2 5h4l-2-5z"/></svg>`
+    imgSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/astro/astro-original.svg"
   },
   { 
     category: "Cloud Infrastructure", 
     title: "AWS", 
     details: "EKS, ECS, S3, IAM, CloudFront",
-    svg: `<svg class="w-6 h-6 text-amber-600 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.5 8.5L4 14.5h2.5l.8-2h2.4l.8 2H13L10.5 8.5h-4zm1.5 1.8l.7 1.7h-1.4l.7-1.7z"/><path d="M4 18c4 2.5 12 2.5 16 0M18 16.5l2 1.5-2.5 1"/></svg>`
+    imgSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
   },
   { 
     category: "Containerization", 
     title: "Docker", 
     details: "Multi-stage Builds, Micro-images",
-    svg: `<svg class="w-6 h-6 text-blue-600 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="11" width="3" height="3" rx="0.5"/><rect x="6" y="11" width="3" height="3" rx="0.5"/><rect x="10" y="11" width="3" height="3" rx="0.5"/><rect x="6" y="7" width="3" height="3" rx="0.5"/><rect x="10" y="7" width="3" height="3" rx="0.5"/><rect x="14" y="11" width="3" height="3" rx="0.5"/><path d="M1 15c1 4 5 6 11 6 8 0 11-4 11-7v-1h-4c-1 0-2-1-2-2v-1"/></svg>`
+    imgSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg"
   },
   { 
     category: "Orchestration", 
     title: "Kubernetes", 
     details: "Auto-scaling, Ingress Controllers",
-    svg: `<svg class="w-6 h-6 text-blue-700 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l8.5 4.9v9.8L12 21.6l-8.5-4.9V6.9L12 2z"/><path d="M12 6.5l5 2.9v5.8l-5 2.9-5-2.9V9.4l5-2.9z"/><circle cx="12" cy="12" r="2"/></svg>`
+    imgSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-plain.svg"
   },
   { 
     category: "Data Storage", 
     title: "PostgreSQL", 
     details: "Relational DB, pgvector, Partitioning",
-    svg: `<svg class="w-6 h-6 text-indigo-600 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.5 2 3 5 3 9.5c0 3.5 2 6 5 7.5L7 21l4-2h1c5.5 0 9-3 9-9.5S17.5 2 12 2z"/><circle cx="9" cy="8" r="1.5" fill="currentColor"/></svg>`
+    imgSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"
   },
 ];
 ---
@@ -71,7 +77,7 @@ const techStack = [
         <div class="shrink-0 w-80 p-5 bg-white border border-slate-200 rounded-xl hover:border-slate-300 transition-colors shadow-sm">
           <div class="flex items-center justify-between mb-3">
             <span class="text-xs font-sans font-medium text-slate-500 uppercase tracking-wider">{item.category}</span>
-            <Fragment set:html={item.svg} />
+            <img src={item.imgSrc} alt={`${item.title} logo`} class="w-8 h-8 object-contain" />
           </div>
           <h4 class="text-lg font-bold font-sans text-slate-900 mb-1">{item.title}</h4>
           <p class="text-xs font-sans text-blue-700 font-medium">{item.details}</p>
@@ -85,7 +91,7 @@ const techStack = [
         <div class="shrink-0 w-80 p-5 bg-white border border-slate-200 rounded-xl hover:border-slate-300 transition-colors shadow-sm">
           <div class="flex items-center justify-between mb-3">
             <span class="text-xs font-sans font-medium text-slate-500 uppercase tracking-wider">{item.category}</span>
-            <Fragment set:html={item.svg} />
+            <img src={item.imgSrc} alt={`${item.title} logo`} class="w-8 h-8 object-contain" />
           </div>
           <h4 class="text-lg font-bold font-sans text-slate-900 mb-1">{item.title}</h4>
           <p class="text-xs font-sans text-blue-700 font-medium">{item.details}</p>
@@ -95,4 +101,3 @@ const techStack = [
     
   </div>
 </div>
-
