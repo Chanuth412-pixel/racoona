@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import AnimatedHero from '../components/AnimatedHero.tsx';
 import HeroIsometric from '../components/HeroIsometric.tsx';
 import AnimatedBentoGrid from '../components/AnimatedBentoGrid.tsx';
+import { CountUpNumber } from '../components/CountUpNumber';
 
 const whyRacoonaItems = [
 	{
@@ -91,19 +92,27 @@ const whoWeServeItems = [
 			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x-0 md:divide-x divide-slate-800">
 					<div class="flex flex-col items-center justify-center p-2">
-						<span class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono tracking-tight">42%</span>
+						<span class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono tracking-tight">
+							<CountUpNumber client:visible value={42} suffix="%" />
+						</span>
 						<span class="text-xs uppercase tracking-wider text-slate-300 font-medium mt-1 font-sans">Lower Cloud Costs</span>
 					</div>
 					<div class="flex flex-col items-center justify-center p-2">
-						<span class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono tracking-tight">99.99%</span>
+						<span class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono tracking-tight">
+							<CountUpNumber client:visible value={99.99} decimals={2} suffix="%" />
+						</span>
 						<span class="text-xs uppercase tracking-wider text-slate-300 font-medium mt-1 font-sans">Production Uptime</span>
 					</div>
 					<div class="flex flex-col items-center justify-center p-2">
-						<span class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono tracking-tight">3x</span>
+						<span class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono tracking-tight">
+							<CountUpNumber client:visible value={3} suffix="x" />
+						</span>
 						<span class="text-xs uppercase tracking-wider text-slate-300 font-medium mt-1 font-sans">Faster Deployments</span>
 					</div>
 					<div class="flex flex-col items-center justify-center p-2">
-						<span class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono tracking-tight">0</span>
+						<span class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono tracking-tight">
+							<CountUpNumber client:visible value={0} />
+						</span>
 						<span class="text-xs uppercase tracking-wider text-slate-300 font-medium mt-1 font-sans">Critical Incidents</span>
 					</div>
 				</div>
