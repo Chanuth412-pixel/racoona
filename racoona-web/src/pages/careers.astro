@@ -3,23 +3,80 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const rawBase = import.meta.env.BASE_URL;
 const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+
+const openings = [
+  {
+    title: 'Senior Cloud DevOps Engineer',
+    department: 'Infrastructure Operations',
+    location: 'Remote / Hybrid',
+    type: 'Full-Time',
+    description: 'Lead multi-cloud provisioning, Kubernetes cluster orchestration, and high-availability Terraform infrastructure deployment.',
+  },
+  {
+    title: 'Lead AI System Architect',
+    department: 'Software & AI Engineering',
+    location: 'Ashburn, VA / Remote',
+    type: 'Full-Time',
+    description: 'Design enterprise high-throughput LLM inference pipelines, GPU cluster scheduling, and automated MLOps pipelines.',
+  },
+  {
+    title: 'Enterprise Security & Compliance Lead',
+    department: 'Security & Operations',
+    location: 'Hybrid',
+    type: 'Full-Time',
+    description: 'Enforce NIST SP 800-53, HIPAA, and FedRAMP compliance frameworks across cloud and hybrid environments.',
+  }
+];
 ---
-<BaseLayout title="Current Openings | Racoona AI">
-  <main class="min-h-screen bg-slate-50 pt-24 pb-16">
-    <div class="max-w-5xl mx-auto px-6">
-      <h1 class="text-4xl font-light text-slate-900 tracking-tight mb-4">Current Openings</h1>
-      <p class="text-slate-600 mb-12">Join our engineering and infrastructure teams.</p>
+
+<BaseLayout title="Current Openings | Racoona AI" description="Explore career opportunities at Racoona AI across cloud engineering, AI infrastructure, and enterprise IT operations.">
+  <main class="min-h-screen bg-slate-50 pt-16 pb-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="space-y-4">
-        <!-- Placeholder Job Card -->
-        <div class="bg-white p-6 border border-slate-200 flex justify-between items-center group hover:border-blue-500 transition-colors">
-          <div>
-            <h2 class="text-lg font-bold text-slate-900">Senior Cloud DevOps Engineer</h2>
-            <p class="text-sm text-slate-500">Remote / Hybrid • Full-Time</p>
-          </div>
-          <a href={`${base}/contact`} class="text-blue-600 font-semibold group-hover:translate-x-1 transition-transform">Apply &rarr;</a>
+      <!-- Hero Section -->
+      <div class="mb-12 border-b border-slate-200 pb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-200 bg-blue-50/50 mb-4">
+          <span class="text-xs font-mono font-semibold text-blue-700 uppercase tracking-widest">Careers at Racoona AI</span>
         </div>
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-4 font-sans">
+          Current Openings
+        </h1>
+        <p class="text-lg text-slate-600 max-w-2xl font-sans leading-relaxed">
+          Join our forward-deployed engineering, artificial intelligence, and cloud infrastructure teams building next-generation enterprise systems.
+        </p>
       </div>
+      
+      <!-- Job Listings Grid -->
+      <div class="space-y-4">
+        {openings.map((job) => (
+          <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-6 group hover:border-blue-500 hover:shadow-md transition-all duration-200">
+            <div class="space-y-2">
+              <div class="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-500">
+                <span class="text-blue-600 font-semibold">{job.department}</span>
+                <span>•</span>
+                <span>{job.location}</span>
+                <span>•</span>
+                <span>{job.type}</span>
+              </div>
+              <h2 class="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors font-sans">{job.title}</h2>
+              <p class="text-sm text-slate-600 font-sans leading-relaxed max-w-2xl">{job.description}</p>
+            </div>
+            
+            <div class="flex-shrink-0">
+              <a 
+                href={`${base}/contact`} 
+                class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-slate-900 group-hover:bg-blue-600 text-white font-sans text-sm font-semibold transition-all duration-200 shadow-sm"
+              >
+                <span>Apply Now</span>
+                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
     </div>
   </main>
 </BaseLayout>
