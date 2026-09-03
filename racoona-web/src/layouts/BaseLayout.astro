@@ -19,7 +19,7 @@ const pathname = Astro.url.pathname;
 const navItems = [
   { name: 'Software', href: `${base}/software` },
   { name: 'IT Services', href: `${base}/it-services` },
-  { name: 'Food & Hospitality', href: `${base}/food-hospitality` },
+  // { name: 'Food & Hospitality', href: `${base}/food-hospitality` },
   { name: 'Blog', href: `${base}/blog` },
   { name: 'Contact', href: `${base}/contact` },
 ];
@@ -120,13 +120,14 @@ const navItems = [
 						<ul class="space-y-2 text-xs font-sans">
 							<li><a href={`${base}/software`} class="text-gray-600 hover:text-black transition-colors">Software</a></li>
 							<li><a href={`${base}/it-services`} class="text-gray-600 hover:text-black transition-colors">IT Services</a></li>
-							<li><a href={`${base}/food-hospitality`} class="text-gray-600 hover:text-black transition-colors">Food & Hospitality</a></li>
+							<!-- <li><a href={`${base}/food-hospitality`} class="text-gray-600 hover:text-black transition-colors">Food & Hospitality</a></li> -->
 						</ul>
 					</div>
 					<div>
 						<h3 class="font-sans text-xs font-bold uppercase tracking-wider text-black mb-4">Corporate</h3>
 						<ul class="space-y-2 text-xs font-sans">
 							<li><a href={`${base}/about`} class="text-gray-600 hover:text-black transition-colors">About Us</a></li>
+							<li><a href={`${base}/careers`} class="text-gray-600 hover:text-black transition-colors">Careers</a></li>
 							<li><a href={`${base}/contact`} class="text-gray-600 hover:text-black transition-colors">Contact</a></li>
 						</ul>
 					</div>

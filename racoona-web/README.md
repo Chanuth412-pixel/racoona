@@ -1,43 +1,36 @@
-# Astro Starter Kit: Minimal
+# Racoona AI — Web Application
 
-```sh
-npm create astro@latest -- --template minimal
+This repository contains the official static corporate web application for **Racoona AI**, built using Astro, React, Framer Motion, and Tailwind CSS.
+
+> 📖 **Full Documentation**: For complete project details written in simple language, please see [PROJECT_OVERVIEW.md](file:///d:/proj_1/static%20upw/racoona-web/PROJECT_OVERVIEW.md).
+
+---
+
+## 🚀 Quick Start
+
+Ensure you are inside the `racoona-web` folder:
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Start local development server
+npm run dev
+
+# 3. Build static production bundle
+npm run build
+
+# 4. Preview production build
+npm run preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-## 🚀 Project Structure
+## 📂 Key Pages
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- `src/pages/index.astro` — Homepage featuring 2.5D Isometric Hero, Trust Metrics, and Operating Pillars.
+- `src/pages/software.astro` — Custom AI & Cloud Engineering division.
+- `src/pages/it-services.astro` — Enterprise IT Operations & Cloud Migration division.
+- `src/pages/careers.astro` — Current Openings & Careers page.
+- `src/pages/about.astro` — Corporate background & Ashburn, VA HQ.
+- `src/pages/contact.astro` — Client & partner contact form.
