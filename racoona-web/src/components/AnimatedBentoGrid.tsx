@@ -38,8 +38,7 @@ const pillars = [
       'MLOps & AI Infrastructure',
       'High-Throughput Data Migration'
     ]
-  }
-  /* ,
+  },
   {
     number: '03',
     id: 'HOSP_SCALING',
@@ -57,7 +56,6 @@ const pillars = [
       "Growth Case Study: Dwaraka's Bawarchi"
     ]
   }
-  */
 ];
 
 export default function AnimatedBentoGrid() {
@@ -68,12 +66,12 @@ export default function AnimatedBentoGrid() {
         <span className="font-mono text-xs uppercase tracking-widest text-slate-500 font-semibold">Corporate Divisions</span>
         <h2 className="mt-2 text-3xl sm:text-4xl font-bold font-sans text-slate-900 tracking-tight">Core Operating Pillars</h2>
         <p className="mt-4 text-slate-600 text-sm sm:text-base font-sans">
-          Deploying specialized expertise across autonomous software and infrastructure operations.
+          Deploying specialized expertise across autonomous software, infrastructure operations, and asset scaling.
         </p>
       </div>
 
-      {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      {/* 3-Column Staggered Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {pillars.map((item, idx) => (
           <motion.a
             key={item.number}
